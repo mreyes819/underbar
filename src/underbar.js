@@ -101,6 +101,8 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    let result = new Set(array)
+    return Array.from(result)
   };
 
 
