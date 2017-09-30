@@ -192,8 +192,7 @@
     }
     return _.reduce(collection, function(accumulator, item) {
       return accumulator && !!iterator(item);
-    }, true)
-
+    }, true);
     // TIP: Try re-using reduce() here.
   };
 
@@ -201,7 +200,15 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    //
+    if (iterator === undefined) {
+      iterator = _.identity;
+    }
+    let passes = false;
+    _.each(collection, item => {
+      if(iterator(item)) passes = true;
+    })
+
+    return passes;
   };
 
 
