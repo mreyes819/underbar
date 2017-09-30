@@ -206,8 +206,7 @@
     let passes = false;
     _.each(collection, item => {
       if(iterator(item)) passes = true;
-    })
-
+    });
     return passes;
   };
 
@@ -231,6 +230,14 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    for (var i = 0; i < arguments.length; i++) {
+      if (typeof arguments[i] === 'object') {
+        _.each(Object.keys(arguments[i]), key => {
+          obj[key] = arguments[i][key];
+        });
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
