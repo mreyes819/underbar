@@ -222,8 +222,7 @@
   // object(s).
   //
   // Example:
-  //   var obj1 = {key1: "something"};
-  //   _.extend(obj1, {
+  //   var obj1 = {key1: "something   //   _.extend(obj1, {
   //     key2: "something new",
   //     key3: "something else new"
   //   }, {
@@ -292,6 +291,14 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    let cache = {}; // {arguments: result}
+
+    return function() {
+      let arg_str = JSON.stringify(arguments)
+      cache[arg_str] = cache[arg_str] || func.apply(func, arguments);
+      return cache[arg_str];
+    }
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
