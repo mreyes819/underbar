@@ -38,11 +38,8 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    if (n >= array.length ) {
-      return array;
-    } else {
-      return n === undefined ? array[array.length - 1] : array.slice(array.length - n);
-    }
+    if (n >= array.length ) return array;
+    else return n === undefined ? array[array.length - 1] : array.slice(array.length - n);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -73,9 +70,7 @@
     var result = -1;
 
     _.each(array, function(item, index) {
-      if (item === target && result === -1) {
-        result = index;
-      }
+      if (item === target && result === -1) result = index;
     });
 
     return result;
