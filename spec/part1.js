@@ -34,6 +34,14 @@
         expect(_.first([1,2,3], 0)).to.eql([]);
       });
 
+      it('should return all but last if -1 is passed in as the index', function() {
+        expect(_.first([1,2,3,4], -1)).to.eql([1,2,3]);
+      });
+
+      it('should return all but last two elements if -2 is passed in as the index', function() {
+        expect(_.first([1,2,3,4], -2)).to.eql([1,2]);
+      });
+
       it('should return all the array\'s elements if the index argument is larger than the length of the array', function() {
         expect(_.first([1,2,3], 5)).to.eql([1, 2, 3]);
       });
@@ -464,7 +472,7 @@
       it('should not mutate the input array', function() {
         var input = [1,2,3,4,5];
         var result = _.reduce(input, function(memo, item) {return item;});
-        
+
         /*
          * Mutation of inputs should be avoided without good justification otherwise
          * as it can often lead to hard to find bugs and confusing code!
